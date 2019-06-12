@@ -7,9 +7,12 @@
 //
 
 #import "InstaKiloCollectionViewController.h"
-#import "ImageDataSource.m"
+#import "ImageDataSource.h"
+#import "ImageCollectionViewCell.h"
 
 @interface InstaKiloCollectionViewController ()
+
+@property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *viewFlowLayout;
 
 @property ImageDataSource *imageDataSource;
 
@@ -29,7 +32,10 @@ static NSString * const reuseIdentifier = @"imageCellIdentity";
     // Register cell classes
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
-    self.collectionView.delegate = ;
+    self.collectionView.delegate = self.imageDataSource;
+    self.collectionView.dataSource = self.imageDataSource;
+    
+    
     
     // Do any additional setup after loading the view.
 }
@@ -52,8 +58,8 @@ static NSString * const reuseIdentifier = @"imageCellIdentity";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of items
-    return 0;
+    
+    return [self.imageDataSource.imageArray count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {

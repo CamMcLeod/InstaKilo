@@ -18,14 +18,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="raccoon-wave2" translatesAutoresizingMaskIntoConstraints="NO" id="HAX-Qw-41o">
-                                <rect key="frame" x="-110" y="218.5" width="634" height="459"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="raccoon-1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="HAX-Qw-41o">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="HAX-Qw-41o" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="2XY-ZN-P2g"/>
-                            <constraint firstItem="HAX-Qw-41o" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="T8G-ga-a4T"/>
+                            <constraint firstItem="HAX-Qw-41o" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="2ak-ph-OFz"/>
+                            <constraint firstItem="HAX-Qw-41o" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" id="CWs-77-kiy"/>
+                            <constraint firstItem="HAX-Qw-41o" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Yzz-qu-OOf"/>
+                            <constraint firstItem="HAX-Qw-41o" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="x4b-uf-coQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -36,6 +38,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="raccoon-wave2" width="634" height="459"/>
+        <image name="raccoon-1.jpg" width="300" height="199"/>
     </resources>
 </document>

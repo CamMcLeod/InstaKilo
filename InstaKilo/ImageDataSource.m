@@ -11,7 +11,7 @@
 
 @interface InstaKiloCollectionViewController ()
 
-@property NSMutableArray *imageArray;
+
 
 @end
 
@@ -19,11 +19,24 @@
 @implementation ImageDataSource
 
 
-- (instancetype)init
+- (instancetype _Nonnull )init
 {
     self = [super init];
     if (self) {
-        _imageArray = [NSMutableArray alloc] initWithObjects:<#(id  _Nonnull const __unsafe_unretained * _Nullable)#> count:<#(NSUInteger)#>
+        
+        NSBundle *mainBundle = [NSBundle mainBundle];
+        NSArray *imagePathsArray = [[NSArray alloc] initWithArray:[mainBundle pathsForResourcesOfType:@"jpg" inDirectory:@"Images"]];
+        NSMutableArray *imageBundle = [[NSMutableArray alloc] init];
+        
+        for(NSString *path in imagePathsArray){
+            NSLog(@"%@", path);
+            UIImage *image = [UIImage imageWithContentsOfFile:path];
+            [imageBundle addObject:image];
+        }
+        
+        _imageArray = imageBundle;
+        NSLog(@"Image array loaded with %ld images", [_imageArray count]);
+
     }
     return self;
 }
@@ -38,17 +51,38 @@
     ImageCollectionViewCell *imageCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"imageCellIdentity" forIndexPath:indexPath];
     
     // Configure the cell’s contents.
-    ToDo *tasksToDo = toDoArray[indexPath.row];
+    UIImage *loadedCellImage = self.imageArray[indexPath.row];
+    UIImageView *loadedCellImageView = [[UIImageView alloc] initWithImage:loadedCellImage];
+    loadedCellImageView.translatesAutoresizingMaskIntoConstraints = NO;
     
-    taskCell.taskLabel.text = tasksToDo.taskTitle;
-    taskCell.taskDescriptionLabel.text = tasksToDo.toDoDescription;
-    taskCell.taskPriorityLabel.text = [NSString stringWithFormat:@"%ld", tasksToDo.priorityNumber];
+    loadedCellImageView.contentMode =  UIViewContentModeScaleAspectFit;
+    
+    [imageCell.contentView addSubview:loadedCellImageView];
+    
+    imageCell.contentMode = UIViewContentModeScaleAspectFit;
+    
+    NSLayoutConstraint *imageCenterYConstraint = [NSLayoutConstraint constraintWithItem: loadedCellImageView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:imageCell attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0];
+    
+    imageCenterYConstraint.active = YES;
+    
+    NSLayoutConstraint *imageCenterXConstraint = [NSLayoutConstraint constraintWithItem: loadedCellImageView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:imageCell attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0];
+    
+    imageCenterXConstraint.active = YES;
+    
+    NSLayoutConstraint *imageWidthConstraint = [NSLayoutConstraint constraintWithItem: loadedCellImageView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:imageCell attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0.0];
+    
+    imageWidthConstraint.active = YES;
+    
+    NSLayoutConstraint *imageHeightConstraint = [NSLayoutConstraint constraintWithItem: loadedCellImageView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:imageCell attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0.0];
+    
+    imageHeightConstraint.active = YES;
+    
     
     return imageCell;
 }
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    <#code#>
+    return [self.imageArray count];
 }
 
 @end
