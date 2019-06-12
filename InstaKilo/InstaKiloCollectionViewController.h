@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  InstaKiloCollectionViewController.h
 //  InstaKilo
 //
 //  Created by Cameron Mcleod on 2019-06-12.
@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+NS_ASSUME_NONNULL_BEGIN
 
+@interface InstaKiloCollectionViewController : UICollectionViewController
 
 @end
 
+NS_ASSUME_NONNULL_END
