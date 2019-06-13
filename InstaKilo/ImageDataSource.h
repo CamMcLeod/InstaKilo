@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ImageDataSource : NSObject <UICollectionViewDelegate, UICollectionViewDataSource>
 
-@property NSMutableArray *imageArray;
+@property NSMutableArray *imageInfo;
 
 @end
 

@@ -53,16 +53,23 @@ static NSString * const reuseIdentifier = @"imageCellIdentity";
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
+    
+    NSMutableSet *imageSet = [[NSMutableSet alloc] init];
+    for (NSArray *imageArray in self.imageDataSource.imageInfo) {
+        [imageSet addObject: imageArray[1]];
+    }
+    NSLog(@"%ld", [imageSet count]);
+    return [imageSet count];
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return [self.imageDataSource.imageArray count];
+    return [self.imageDataSource.imageInfo count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     // Configure the cell
